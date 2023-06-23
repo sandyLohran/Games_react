@@ -1,5 +1,5 @@
 .contft {
-  background-color: #000;
+  
   min-height: 100vh;
   display: grid;
   align-content: center;
@@ -78,4 +78,8 @@
   height: 150px;
   margin: auto;
   
+}
+.cor {
+  background: rgb(19, 20, 37);
+
 }

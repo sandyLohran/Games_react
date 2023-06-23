@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import api from "../services/api";
 import "./listar.css";
 import Cabecalho from "../componentes/cabecalho";
+import Card from "../componentes/card";
+
 
 
 class Listar extends Component {
@@ -10,13 +12,21 @@ class Listar extends Component {
     isLoading: true,
     error: null,
     filterValue: "",
+ 
+    selectedGenre: "",
+    genres: [],
   };
 
   componentDidMount() {
     this.fetchDataWithTimeout(api.get("/data"), 5000)
       .then((response) => {
-        this.setState({ games: response.data, isLoading: false });
-        
+        const games = response.data;
+        const genres = this.getUniqueGenres(games);
+        this.setState({
+          games,
+          isLoading: false,
+          genres,
+        });
       })
       .catch((error) => {
         if (
@@ -24,7 +34,8 @@ class Listar extends Component {
           [500, 502, 503, 504, 507, 508, 509].includes(error.response.status)
         ) {
           this.setState({
-            error: "O servidor falhou em responder, tente recarregar a página",
+            error:
+              "O servidor falhou em responder, tente recarregar a página",
             isLoading: false,
           });
         } else {
@@ -55,15 +66,43 @@ class Listar extends Component {
     });
   };
 
+  getUniqueGenres = (games) => {
+    const genres = [...new Set(games.map((game) => game.genre.toLowerCase()))];
+    return genres;
+  };
+
   handleFilterChange = (event) => {
     this.setState({ filterValue: event.target.value });
   };
 
+
+  handleGenreChange = (event) => {
+    this.setState({ selectedGenre: event.target.value });
+  };
+
+  renderGenre = (gameId) => {
+    const { selectedGenre, games } = this.state;
+    const game = games.find((game) => game.id === gameId);
+
+
+    if (selectedGenre === "" || game.genre.toLowerCase() === selectedGenre.toLowerCase()) {
+
+      return <p className="text-dark card-text text-uppercase">{game.genre}</p>;
+
+
+    }
+
+    return null;
+  };
+
+
   render() {
-    const { games, isLoading, error, filterValue } = this.state;
+    const { games, isLoading, error, filterValue,selectedGenre, genres } = this.state;
 
     const filteredGames = games.filter((game) => {
-      return game.title.toLowerCase().includes(filterValue.toLowerCase());
+      const titleMatchesFilter = game.title.toLowerCase().includes(filterValue.toLowerCase());
+      const genreMatchesFilter = game.genre.toLowerCase() === selectedGenre.toLowerCase();
+      return titleMatchesFilter && (selectedGenre === "" || genreMatchesFilter);
     });
 
     return (
@@ -91,26 +130,22 @@ class Listar extends Component {
             <Cabecalho
               filterValue={filterValue}
               handleFilterChange={this.handleFilterChange}
+              selectedGenre={selectedGenre}
+              handleGenreChange={this.handleGenreChange}
+              genres={genres}
             />
             <div className="container d-flex justify-content-center">
-              <div className="row">
+              <div className="row justify-content-around">
                 {filteredGames.map((game) => (
-                  <div className="py-2 col-md-4" key={game.id}>
-                    <div className="card h-100 bg-dark">
-                      <img
-                        className=""
-                        src={game.thumbnail}
-                        alt={game.title}
-                      />
-                      <div className="card-body text-light">
-                        <h4 className="card-title">
-                          <strong>{game.title}</strong>
-                        </h4>
-                        <p className="card-text text-secondary">
-                          {game.short_description}
-                        </p>
-                      </div>
-                    </div>
+                  <div
+                    className="card-deck col-md-4 py-2"
+                    key={game.id}
+
+                  >
+              <Card game={game} selectedGenre={selectedGenre} />
+
+                    
+
                   </div>
                 ))}
               </div>
