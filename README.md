@@ -1,70 +1,35 @@
-# Getting Started with Create React App
+# Projeto Games
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Este é um aplicativo baseado em React que apresenta uma coleção de jogos. Ele permite filtrar e pesquisar jogos com base em seus títulos e gêneros.
 
-## Available Scripts
+![Home](public/CapturaHome.png)
+![Home](public/CapturaProjeto.png)
 
-In the project directory, you can run:
+## Sumário
 
-### `npm start`
+- [Instalação](#instalação)
+- [Recursos](#recursos)
+- [Tecnologias Utilizadas](#tecnologias-utilizadas)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Instalação
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+Para executar este projeto localmente, siga os seguintes passos:
 
-### `npm test`
+1. Clone o repositório em sua máquina local.
+2. Navegue até o diretório raiz do projeto.
+3. Instale as dependências executando o comando: `npm install`.
+4. Inicie o servidor de desenvolvimento com o comando: `npm start`.
+5. Abra seu navegador da web e visite [http://localhost:3000](http://localhost:3000) para ver o aplicativo em ação.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Recursos
 
-### `npm run build`
+- **Filtragem:** É possível filtrar os jogos por seus títulos e gêneros. Utilize a barra de pesquisa para filtrar os jogos por título e selecione um gênero na lista suspensa para filtrar por gênero.
+- **Carregamento:** O aplicativo exibe uma sobreposição de carregamento enquanto os jogos estão sendo buscados no servidor. Isso fornece aos usuários uma indicação visual de que o conteúdo está sendo carregado.
+- **Tratamento de Erros:** Se ocorrer um erro ao buscar os jogos, uma mensagem de erro apropriada é exibida ao usuário. Diferentes cenários de erro, como falha do servidor ou tempo limite, são tratados e exibidos adequadamente.
+- **Design Responsivo:** O aplicativo foi projetado para ser responsivo e proporcionar uma experiência de visualização ideal em diferentes dispositivos e tamanhos de tela.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Tecnologias Utilizadas
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- [React](https://reactjs.org/): Framework JavaScript para construção de interfaces de usuário.
+- [Bootstrap](https://getbootstrap.com/): Framework CSS para estilização e criação de componentes responsivos.
+- [Axios](https://axios-http.com/): Biblioteca JavaScript para realizar requisições HTTP ao servidor.

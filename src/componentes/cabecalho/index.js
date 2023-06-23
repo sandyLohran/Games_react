@@ -9,7 +9,7 @@ const Cabecalho = ({ filterValue, handleFilterChange, selectedGenre, handleGenre
     <header className="container">
       <nav className="navbar navbar-light ">  
       
-        <h1 className="titleHeader navbar-brand ">
+        <h1 className="titleHeader  ">
           <strong>Games</strong>
         </h1>
        
