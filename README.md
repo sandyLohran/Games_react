@@ -3,7 +3,7 @@
 Este é um aplicativo baseado em React que apresenta uma coleção de jogos. Ele permite filtrar e pesquisar jogos com base em seus títulos e gêneros.
 
 ![Home](public/CapturaHome.png)
-![Home](public/CapturaProjeto.png)
+![Home](public/capturaProjeto.png)
 
 ## Sumário
 
