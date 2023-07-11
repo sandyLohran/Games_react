@@ -1,0 +1,44 @@
+
+.pai{
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+
+
+
+
+.bloco{
+    display: grid;
+    justify-content: center;
+    background-color: rgba(255, 255, 255, 0.762);
+    align-items: center;
+    height: 32.5rem;
+    width: 25rem;
+    border-radius: 1rem;
+    
+    
+}
+
+
+
+.botaoCadastrar{
+    border: none;
+    background: none;
+}
+.botaoCadastrar:hover{
+    
+    background: rgb(45, 45, 193);
+}
+
+.botaoCadastrar__LINK{
+    text-decoration: none;
+    color: black;
+}
+
+.botaoCadastrar__LINK:hover {
+    color: aliceblue;
+    
+}

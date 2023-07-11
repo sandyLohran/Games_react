@@ -3,8 +3,7 @@ import api from "../services/api";
 import "./listar.css";
 import Cabecalho from "../componentes/cabecalho";
 import Card from "../componentes/card";
-
-
+import FirebaseDataComponent from "../buscar";
 
 class Listar extends Component {
   state = {
@@ -12,9 +11,10 @@ class Listar extends Component {
     isLoading: true,
     error: null,
     filterValue: "",
- 
     selectedGenre: "",
     genres: [],
+    favoritos: [],
+    isFilterButtonClicked: false,
   };
 
   componentDidMount() {
@@ -75,38 +75,72 @@ class Listar extends Component {
     this.setState({ filterValue: event.target.value });
   };
 
-
   handleGenreChange = (event) => {
     this.setState({ selectedGenre: event.target.value });
+  };
+
+  handleFavoritosChange = (favoritos) => {
+    this.setState({ favoritos });
+    // Faça o que for necessário com os favoritos atualizados
+  };
+
+  handleFilterButtonClick = () => {
+    this.setState((prevState) => ({
+      isFilterButtonClicked: !prevState.isFilterButtonClicked,
+    }));
   };
 
   renderGenre = (gameId) => {
     const { selectedGenre, games } = this.state;
     const game = games.find((game) => game.id === gameId);
 
-
-    if (selectedGenre === "" || game.genre.toLowerCase() === selectedGenre.toLowerCase()) {
-
-      return <p className="text-dark card-text text-uppercase">{game.genre}</p>;
-
-
+    if (
+      selectedGenre === "" ||
+      game.genre.toLowerCase() === selectedGenre.toLowerCase()
+    ) {
+      return (
+        <p className="text-dark card-text text-uppercase">{game.genre}</p>
+      );
     }
 
     return null;
   };
 
-
   render() {
-    const { games, isLoading, error, filterValue,selectedGenre, genres } = this.state;
+    const {
+      games,
+      isLoading,
+      error,
+      filterValue,
+      selectedGenre,
+      genres,
+      favoritos,
+      isFilterButtonClicked,
+    } = this.state;
+
+    const arrayDeFavoritosTitle = favoritos ? Object.keys(favoritos) : [];
 
     const filteredGames = games.filter((game) => {
-      const titleMatchesFilter = game.title.toLowerCase().includes(filterValue.toLowerCase());
-      const genreMatchesFilter = game.genre.toLowerCase() === selectedGenre.toLowerCase();
-      return titleMatchesFilter && (selectedGenre === "" || genreMatchesFilter);
+      const titleMatchesFilter = game.title
+        .toLowerCase()
+        .includes(filterValue.toLowerCase());
+      const genreMatchesFilter =
+        game.genre.toLowerCase() === selectedGenre.toLowerCase();
+      const isTitleInFavorites = arrayDeFavoritosTitle.some(
+        (titulo) => game.title.replace(/\s/g, "") === titulo
+      );
+
+      return (
+        titleMatchesFilter &&
+        (selectedGenre === "" || genreMatchesFilter) &&
+        (isTitleInFavorites || !isFilterButtonClicked)
+      );
     });
 
     return (
       <div>
+        <FirebaseDataComponent onFavoritosChange={this.handleFavoritosChange} />
+        
         {isLoading ? (
           <div className="contft">
             <div className="loading-overlay">
@@ -133,19 +167,16 @@ class Listar extends Component {
               selectedGenre={selectedGenre}
               handleGenreChange={this.handleGenreChange}
               genres={genres}
+              handleFilterButtonClick={this.handleFilterButtonClick}
+
+              isFilterButtonClicked={isFilterButtonClicked}
+              
             />
             <div className="container d-flex justify-content-center">
               <div className="row justify-content-around">
                 {filteredGames.map((game) => (
-                  <div
-                    className="card-deck col-md-4 py-2"
-                    key={game.id}
-
-                  >
-              <Card game={game} selectedGenre={selectedGenre} />
-
-                    
-
+                  <div className="card-deck col-md-4 py-2" key={game.id}>
+                    <Card game={game} selectedGenre={selectedGenre} />
                   </div>
                 ))}
               </div>

@@ -1,29 +1,75 @@
-import React from "react";
-import Filtro from "./filtro";
+
+import Container from 'react-bootstrap/Container';
 import "./cabecalho.css";
+import Nav from 'react-bootstrap/Nav';
+import Navbar from 'react-bootstrap/Navbar';
+import Filtro from './filtro';
+import Firebaseauth from '../conta/firebase-auth';
+import { useEffect, useState } from 'react';
+import { auth } from '../../firebase';
+import NavDropdown from 'react-bootstrap/NavDropdown';
+import CheckFavoritos from './checkFavoritos';
+function Cabecalho({ filterValue, handleFilterChange, selectedGenre, handleGenreChange, genres, isFilterButtonClicked,handleFilterButtonClick }) {
+  const [user, setUser] = useState(null);
 
+  useEffect(() => {
+    const unsubscribe = auth.onAuthStateChanged((user) => {
+      setUser(user);
+    });
 
+    return () => unsubscribe(); 
+  }, []);
 
-const Cabecalho = ({ filterValue, handleFilterChange, selectedGenre, handleGenreChange, genres }) => {
   return (
-    <header className="container">
-      <nav className="navbar navbar-light ">  
-      
-        <h1 className="titleHeader  ">
-          <strong>Games</strong>
-        </h1>
-       
-        <Filtro
-  filterValue={filterValue}
-  handleFilterChange={handleFilterChange}
-  genres={genres}
-  selectedGenre={selectedGenre}
-  handleGenreChange={handleGenreChange}
-/>
-      
-      </nav>
-    </header>
+    <Navbar expand="lg" className="bg-body-tertiary">
+      <Container>
+        <Navbar.Brand className='titleHeader'>Games</Navbar.Brand>
+        <Navbar.Toggle aria-controls="navbarScroll" />
+        <Navbar.Collapse id="navbarScroll">
+          <Nav
+            className="me-auto my-2 my-lg-0"
+            style={{ maxHeight: '100px' }}
+            navbarScroll
+          >
+
+            
+            <NavDropdown title="Conta" id="navbarScrollingDropdown">
+
+              {user ? (
+                <NavDropdown.Item href="/" >
+
+                  <Firebaseauth />
+
+                </NavDropdown.Item>
+
+              ) : (
+                <NavDropdown.Item href="/login">
+                  Entrar
+                </NavDropdown.Item>
+
+              )}
+              <NavDropdown.Divider />
+
+            </NavDropdown>
+
+
+
+          </Nav>
+          <Filtro
+            filterValue={filterValue}
+            handleFilterChange={handleFilterChange}
+            genres={genres}
+            selectedGenre={selectedGenre}
+            handleGenreChange={handleGenreChange}
+            isFilterButtonClicked={isFilterButtonClicked}
+            handleFilterButtonClick={handleFilterButtonClick}
+
+          />
+          <CheckFavoritos isFilterButtonClicked={isFilterButtonClicked} handleFilterButtonClick={handleFilterButtonClick}/>
+        </Navbar.Collapse>
+      </Container>
+    </Navbar>
   );
-};
+}
 
 export default Cabecalho;
