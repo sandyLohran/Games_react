@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { getDatabase, ref, onValue } from "firebase/database";
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
-import Listar from './pages';
+
 
 const FirebaseDataComponent = ({ onFavoritosChange }) => {
   const db = getDatabase();
@@ -26,7 +26,7 @@ const FirebaseDataComponent = ({ onFavoritosChange }) => {
         const datalist = snapshot.val();
         setFavoritos(datalist);
 
-        // Faça o que for necessário com os dados recebidos
+     
         if (onFavoritosChange) {
           onFavoritosChange(datalist);
         }
@@ -34,7 +34,7 @@ const FirebaseDataComponent = ({ onFavoritosChange }) => {
     }
   }, [db, user?.uid, onFavoritosChange]);
 
-  return null; // Não retorna nenhum elemento HTML
+  return null; 
 };
 
 export default FirebaseDataComponent;

@@ -26,12 +26,12 @@ const CheckFavoritos = ({ isFilterButtonClicked, handleFilterButtonClick }) => {
   };
 
   return (
-    <label>
+    <label className='mx-1'>
       <input
         type="checkbox"
         checked={isFilterButtonClicked}
         onChange={handleCheckboxChange}
-        
+        className='mx-1'
       />
       Favoritos
     </label>

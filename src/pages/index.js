@@ -3,7 +3,8 @@ import api from "../services/api";
 import "./listar.css";
 import Cabecalho from "../componentes/cabecalho";
 import Card from "../componentes/card";
-import FirebaseDataComponent from "../buscar";
+import FirebaseDataComponent from "../componentes/favoritos/buscarFavoritos";
+import OderStar from "../componentes/ordStar/ordStar";
 
 class Listar extends Component {
   state = {
@@ -81,7 +82,6 @@ class Listar extends Component {
 
   handleFavoritosChange = (favoritos) => {
     this.setState({ favoritos });
-    // Faça o que for necessário com os favoritos atualizados
   };
 
   handleFilterButtonClick = () => {
@@ -136,7 +136,7 @@ class Listar extends Component {
         (isTitleInFavorites || !isFilterButtonClicked)
       );
     });
-
+  
     return (
       <div>
         <FirebaseDataComponent onFavoritosChange={this.handleFavoritosChange} />
@@ -168,19 +168,10 @@ class Listar extends Component {
               handleGenreChange={this.handleGenreChange}
               genres={genres}
               handleFilterButtonClick={this.handleFilterButtonClick}
-
               isFilterButtonClicked={isFilterButtonClicked}
               
             />
-            <div className="container d-flex justify-content-center">
-              <div className="row justify-content-around">
-                {filteredGames.map((game) => (
-                  <div className="card-deck col-md-4 py-2" key={game.id}>
-                    <Card game={game} selectedGenre={selectedGenre} />
-                  </div>
-                ))}
-              </div>
-            </div>
+                <OderStar filter={filteredGames} selectedGenre={selectedGenre}/>
           </div>
         )}
       </div>

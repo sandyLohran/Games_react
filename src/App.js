@@ -4,7 +4,8 @@ import './App.css';
 import Login from "./pages/login";
 import AppRoutes from "./Routes";
 import WriteUserData from "./componentes/star/testefirebase";
-import FirebaseDataComponent from "./buscar";
+import OrdStar from "./componentes/ordStar/ordStar";
+
 
 
 function App() {

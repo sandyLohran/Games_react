@@ -1,4 +1,4 @@
-import { auth } from "../../firebase";
+import { auth } from "../../services/firebase";
 import React, { useEffect, useState } from 'react';
 import"./conta.css"
 

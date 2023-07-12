@@ -16,7 +16,7 @@ const Filtro = ({
   }
 
   return (
-    <div className="">
+    <div className="mx-2">
       <input
         className="pesquisar "
         type="text"

@@ -3,7 +3,7 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import './login.css';
 import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
-import { app } from '../../firebase';
+import { app } from '../../services/firebase';
 
 const Login = () => {
     const [email, setEmail] = useState('');

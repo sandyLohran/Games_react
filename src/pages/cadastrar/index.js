@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
-import { app } from '../../firebase';
+import { app } from '../../services/firebase';
 
 const Cadastro = () => {
   const [email, setEmail] = useState('');
