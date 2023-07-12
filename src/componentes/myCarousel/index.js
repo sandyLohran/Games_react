@@ -14,8 +14,8 @@ const MyCarousel = ({props}) => {
                             src={item.thumbnail}
                             alt={item.title}
                         />
-                        <Carousel.Caption>
-                            <h2><strong>Classicados</strong></h2>
+                        <Carousel.Caption className=''>
+                            
                             <h3 className='MycarouselH3'><strong>{item.title}</strong></h3>
                         </Carousel.Caption>
                     </Carousel.Item>
