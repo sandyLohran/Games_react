@@ -4,15 +4,12 @@ import StarAll from '../StarALL';
 
 const CardStar = ({ fav, gamesBase }) => {
 
-    const [favoritos, setFavoritos] = useState([]);
+    
     const [sortedGames, setSortedGames] = useState([]);
-
-    const handleFavoritosChange = useCallback((favoritos) => {
-        setFavoritos(favoritos);
-    }, []);
+    const [isUpdated, setIsUpdated] = useState(false);
 
 
-    function getAverageRating(gameTitle) {
+    const getAverageRating = useCallback((gameTitle) => {
         gameTitle = gameTitle.replace(/\s/g, '');
         let totalRating = 0;
         let count = 0;
@@ -24,7 +21,7 @@ const CardStar = ({ fav, gamesBase }) => {
         }
 
         return count > 0 ? totalRating / count : 0;
-    }
+    }, [fav]);
 
 
     useEffect(() => {
@@ -41,16 +38,19 @@ const CardStar = ({ fav, gamesBase }) => {
         });
         /* console.log(gamesBase)  */
         setSortedGames(sortedGames);
-    }, [gamesBase, fav]);
+    }, [gamesBase, fav, getAverageRating]);
 
 
-
+    useEffect(() => {
+        // ...
+        setIsUpdated(true);
+      }, [gamesBase, fav]);
 
     
     const firstThreeObjects = sortedGames.slice(0, 5);
     return (
         <>
-        
+            {isUpdated && (
             <section className='container'>
                 <h3 className='text-center m-4 text-light'><strong>TOP 5 CLASSIFICADOS</strong></h3>
                 <div className='container row mx-auto g-4  justify-content-center'>
@@ -68,6 +68,7 @@ const CardStar = ({ fav, gamesBase }) => {
                     ))}
                 </div>
             </section>
+             )}
         </>
     );
 };
