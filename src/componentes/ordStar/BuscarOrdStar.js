@@ -4,8 +4,8 @@ import { getDatabase, ref, onValue } from 'firebase/database';
 
 const BuscarOrdStar = ({ onFavoritosChange }) => {
     const db = getDatabase();
-
     const [favoritos, setFavoritos] = useState(null);
+    
 
     useEffect(() => {
         const starCountRef = ref(db, 'Classificacao/');
@@ -17,7 +17,6 @@ const BuscarOrdStar = ({ onFavoritosChange }) => {
             }
         });
     }, [db, onFavoritosChange]);
-    
     return null;
 };
 export default BuscarOrdStar;

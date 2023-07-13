@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
+import Form from 'react-bootstrap/Form';
 
 
 const CheckFavoritos = ({ isFilterButtonClicked, handleFilterButtonClick }) => {
@@ -26,15 +27,16 @@ const CheckFavoritos = ({ isFilterButtonClicked, handleFilterButtonClick }) => {
   };
 
   return (
-    <label className='mx-1'>
-      <input
-        type="checkbox"
-        checked={isFilterButtonClicked}
-        onChange={handleCheckboxChange}
-        className='mx-1'
-      />
-      Favoritos
-    </label>
+    
+      <Form.Check
+  type="switch"
+  checked={isFilterButtonClicked}
+  onChange={handleCheckboxChange}
+  label="Favoritos"
+  className='mx-1'
+/>
+
+ 
   );
 };
 

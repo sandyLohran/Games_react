@@ -3,7 +3,7 @@ import './carousel.css'
 const MyCarousel = ({props}) => {
     const firstThreeObjects = props.slice(0, 3);
 
-    console.log(firstThreeObjects)
+    
     return (
         <section>
             <Carousel>
@@ -16,11 +16,16 @@ const MyCarousel = ({props}) => {
                         />
                         <Carousel.Caption className=''>
                             
-                            <h3 className='MycarouselH3'><strong>{item.title}</strong></h3>
+                            <h3 className='MycarouselH3'><strong></strong></h3>
                         </Carousel.Caption>
                     </Carousel.Item>
                 ))}
+
+
+                
             </Carousel>
+            
+                
         </section>
     )
 }

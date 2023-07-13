@@ -1,0 +1,16 @@
+.quote{
+    
+    display: grid;
+    justify-content: center;
+    align-items: center ;
+    height: 540px;
+    background-image: url(./parallax.jpg);
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+   }
+   .texto{
+    
+    background-color: rgba(3, 11, 68, 0.641);
+    padding: 1rem;
+    font-size: 46px;
+   }

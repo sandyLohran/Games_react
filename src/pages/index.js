@@ -5,6 +5,8 @@ import Cabecalho from "../componentes/cabecalho";
 import Card from "../componentes/card";
 import FirebaseDataComponent from "../componentes/favoritos/buscarFavoritos";
 import OderStar from "../componentes/ordStar/ordStar";
+import CardStar from "../componentes/cardStar";
+import Parallax from "../componentes/parallax";
 
 class Listar extends Component {
   state = {
@@ -16,11 +18,13 @@ class Listar extends Component {
     genres: [],
     favoritos: [],
     isFilterButtonClicked: false,
+    
   };
-
+  
   componentDidMount() {
     this.fetchDataWithTimeout(api.get("/data"), 5000)
-      .then((response) => {
+   
+    .then((response) => {
         const games = response.data;
         const genres = this.getUniqueGenres(games);
         this.setState({
@@ -117,7 +121,7 @@ class Listar extends Component {
       favoritos,
       isFilterButtonClicked,
     } = this.state;
-
+   
     const arrayDeFavoritosTitle = favoritos ? Object.keys(favoritos) : [];
 
     const filteredGames = games.filter((game) => {
@@ -171,7 +175,9 @@ class Listar extends Component {
               isFilterButtonClicked={isFilterButtonClicked}
               
             />
-                <OderStar filter={filteredGames} selectedGenre={selectedGenre}/>
+                <Parallax/>
+                <OderStar filter={filteredGames} selectedGenre={selectedGenre} gamesBase={games}/>
+                
           </div>
         )}
       </div>

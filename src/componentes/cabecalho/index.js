@@ -21,7 +21,7 @@ function Cabecalho({ filterValue, handleFilterChange, selectedGenre, handleGenre
   }, []);
 
   return (
-    <Navbar expand="lg" className="bg-body-tertiary">
+    <Navbar expand="lg" className="bg-body-tertiary fixed-top">
       <Container fluid className='mx-2'>
         <Navbar.Brand className='titleHeader'>Games</Navbar.Brand>
         <Navbar.Toggle aria-controls="navbarScroll" />
