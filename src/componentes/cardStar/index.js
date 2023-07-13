@@ -37,25 +37,24 @@ const CardStar = ({ fav, gamesBase }) => {
             return bRating - aRating;
         });
         /* console.log(gamesBase)  */
-        setSortedGames(sortedGames);
+        setSortedGames(sortedGames.slice(0, 5));
     }, [gamesBase, fav, getAverageRating]);
 
 
     useEffect(() => {
-        // ...
-        setIsUpdated(true);
-      }, [gamesBase, fav]);
+        setIsUpdated(prevState => prevState + 1);
+    }, [gamesBase, fav, getAverageRating]);
 
     
-    const firstThreeObjects = sortedGames.slice(0, 5);
+   
     return (
         <>
-            {isUpdated && (
             <section className='container'>
                 <h3 className='text-center m-4 text-light'><strong>TOP 5 CLASSIFICADOS</strong></h3>
+                    {isUpdated === 2 && (
                 <div className='container row mx-auto g-4  justify-content-center'>
 
-                    {firstThreeObjects.map((item, index) => (
+                    {sortedGames.map((item, index) => (
                         <div key={index} className='col-6 col-md-4 col-xxl-2'>
 
                             <Card>
@@ -67,8 +66,8 @@ const CardStar = ({ fav, gamesBase }) => {
                         </div>
                     ))}
                 </div>
+                    )}
             </section>
-             )}
         </>
     );
 };
