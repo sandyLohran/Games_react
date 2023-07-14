@@ -4,7 +4,7 @@ import StarAll from '../StarALL';
 
 const CardStar = ({ fav, gamesBase }) => {
 
-    
+
     const [sortedGames, setSortedGames] = useState([]);
     const [isUpdated, setIsUpdated] = useState(false);
 
@@ -45,13 +45,13 @@ const CardStar = ({ fav, gamesBase }) => {
         setIsUpdated(prevState => prevState + 1);
     }, [gamesBase, fav, getAverageRating]);
 
-    
-   
+
+
     return (
-        <>
-            <section className='container'>
-                <h3 className='text-center m-4 text-light'><strong>TOP 5 CLASSIFICADOS</strong></h3>
-                    {isUpdated === 2 && (
+
+        <section className='container'>
+            <h3 className='text-center m-4 text-light'><strong>TOP 5 CLASSIFICADOS</strong></h3>
+            {isUpdated === 2 && (
                 <div className='container row mx-auto g-4  justify-content-center'>
 
                     {sortedGames.map((item, index) => (
@@ -66,9 +66,9 @@ const CardStar = ({ fav, gamesBase }) => {
                         </div>
                     ))}
                 </div>
-                    )}
-            </section>
-        </>
+            )}
+        </section>
+
     );
 };
 

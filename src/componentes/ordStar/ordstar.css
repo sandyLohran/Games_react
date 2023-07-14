@@ -10,3 +10,43 @@
     cursor: pointer;
 
 }
+
+.mostrarMais {
+    display: grid;
+    justify-items: center;
+    align-items: center;
+    background-color: #18064a4a;
+    padding: 10px;
+}
+
+.mostrarMais_btn {
+    display: grid;
+    width: 100%;
+    align-items: center;
+    text-align: center;
+
+    padding: 10px;
+
+    background: unset;
+    border: none;
+    color: rgb(255, 255, 255);
+    background-color: rgb(27, 27, 141);
+
+
+    font-size: 17px;
+
+    cursor: pointer;
+
+}
+
+.mostrarMais_btn:hover {
+    background-color: #0a0439;
+    color: rgb(255, 255, 255);
+
+}
+.ordenar{
+    display: flex;
+   
+    
+    
+}

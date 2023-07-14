@@ -9,7 +9,7 @@ import { useEffect, useState } from 'react';
 import { auth } from '../../services/firebase';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import CheckFavoritos from './checkFavoritos';
-function Cabecalho({ filterValue, handleFilterChange, selectedGenre, handleGenreChange, genres, isFilterButtonClicked,handleFilterButtonClick }) {
+function Cabecalho({ filterValue, handleFilterChange, selectedGenre, handleGenreChange, genres, isFilterButtonClicked, handleFilterButtonClick }) {
   const [user, setUser] = useState(null);
 
   useEffect(() => {
@@ -17,13 +17,13 @@ function Cabecalho({ filterValue, handleFilterChange, selectedGenre, handleGenre
       setUser(user);
     });
 
-    return () => unsubscribe(); 
+    return () => unsubscribe();
   }, []);
 
   return (
     <Navbar expand="lg" className="bg-body-tertiary fixed-top">
       <Container fluid className='mx-2'>
-        <Navbar.Brand className='titleHeader'>Games</Navbar.Brand>
+        <Navbar.Brand className='titleHeader'><h1>Games</h1></Navbar.Brand>
         <Navbar.Toggle aria-controls="navbarScroll" />
         <Navbar.Collapse id="navbarScroll">
           <Nav
@@ -32,7 +32,7 @@ function Cabecalho({ filterValue, handleFilterChange, selectedGenre, handleGenre
             navbarScroll
           >
 
-            
+
             <NavDropdown title="Conta" id="navbarScrollingDropdown">
 
               {user ? (
@@ -65,7 +65,7 @@ function Cabecalho({ filterValue, handleFilterChange, selectedGenre, handleGenre
             handleFilterButtonClick={handleFilterButtonClick}
 
           />
-          <CheckFavoritos isFilterButtonClicked={isFilterButtonClicked} handleFilterButtonClick={handleFilterButtonClick}/>
+          <CheckFavoritos isFilterButtonClicked={isFilterButtonClicked} handleFilterButtonClick={handleFilterButtonClick} />
         </Navbar.Collapse>
       </Container>
     </Navbar>

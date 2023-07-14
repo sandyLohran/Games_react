@@ -1,0 +1,41 @@
+footer {
+    margin-top: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    background-color: #ffffff;
+    color: #000000;
+}
+
+.social-icons a {
+    color: #000000;
+    text-decoration: none;
+    margin-right: 10px;
+    
+}
+
+.creator-info {
+    font-style: italic;
+}
+
+
+.titleFooter {
+    text-transform: uppercase;
+    color: #1c0a4a;
+    font-size: 1.1rem;
+    padding: 0;
+}
+@media (max-width: 425px) {
+    footer  {
+        display: grid;
+        text-align: center;
+        
+    }
+    .creator-info {
+        margin-bottom: 1rem;
+    }
+    .social-icons {
+        margin-top: 1rem;
+    }
+}

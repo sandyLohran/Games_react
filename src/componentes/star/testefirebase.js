@@ -9,6 +9,7 @@ function RatingSystem({ postId }) {
   const [user, setUser] = useState(null);
   const [selectedStar, setSelectedStar] = useState(null);
   const [isTrembling, setIsTrembling] = useState(false);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     const auth = getAuth();
@@ -18,23 +19,27 @@ function RatingSystem({ postId }) {
       } else {
         setUser(null);
       }
+    }, (error) => {
+      setError(error.message);
     });
   }, []);
 
   useEffect(() => {
     const db = getDatabase();
     if (user) {
-      // Remova caracteres inválidos do postId
+
       const safePostId = postId.replace(/[.\s]/g, '');
       const ratingRef = ref(db, `/Classificacao/${user.uid}/${safePostId}`);
       const ratingListener = onValue(ratingRef, (snapshot) => {
         if (snapshot.exists()) {
           setRating(snapshot.val());
         }
+      }, (error) => {
+        setError(error.message);
       });
 
       return () => {
-        // Limpe o listener quando o componente for desmontado
+
         ratingListener();
       };
     }
@@ -43,18 +48,28 @@ function RatingSystem({ postId }) {
   const handleStarClick = (starRating) => {
     if (user) {
       const db = getDatabase();
-      // Remova caracteres inválidos do postId
+
       const safePostId = postId.replace(/[.\s]/g, '');
       const ratingRef = ref(db, `/Classificacao/${user.uid}/${safePostId}`);
 
       if (selectedStar === starRating) {
-        set(ratingRef, 0);
-        setRating(0);
-        setSelectedStar(null);
+        set(ratingRef, 0)
+          .then(() => {
+            setRating(0);
+            setSelectedStar(null);
+          })
+          .catch((error) => {
+            setError(error.message);
+          });
       } else {
-        set(ratingRef, starRating);
-        setRating(starRating);
-        setSelectedStar(starRating);
+        set(ratingRef, starRating)
+          .then(() => {
+            setRating(starRating);
+            setSelectedStar(starRating);
+          })
+          .catch((error) => {
+            setError(error.message);
+          });
       }
 
       setIsTrembling(true);
@@ -68,7 +83,9 @@ function RatingSystem({ postId }) {
 
   return (
     <div>
+      {error && <p>{error}</p>}
       <div>
+
         {[1, 2, 3, 4, 5].map((star) => (
           <svg
             key={star}
@@ -85,6 +102,7 @@ function RatingSystem({ postId }) {
           </svg>
         ))}
       </div>
+
     </div>
   );
 }

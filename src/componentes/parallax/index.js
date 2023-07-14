@@ -9,7 +9,7 @@ const Parallax = () => {
 
     <div className="background-image"></div>
     <div className="quote"> 
-    <h1 className='text-center text-light texto'><strong>SEJA BEM-VINDO</strong></h1>
+    <span className='text-center text-light texto'><strong>SEJA <span>BEM-VINDO</span></strong></span>
     </div>
     
     </Container>

@@ -7,7 +7,7 @@ const CheckFavoritos = ({ isFilterButtonClicked, handleFilterButtonClick }) => {
 
   const [user, setUser] = useState(null);
 
-    useEffect(() => {
+  useEffect(() => {
     const auth = getAuth();
     onAuthStateChanged(auth, (user) => {
       if (user) {
@@ -27,16 +27,16 @@ const CheckFavoritos = ({ isFilterButtonClicked, handleFilterButtonClick }) => {
   };
 
   return (
-    
-      <Form.Check
-  type="switch"
-  checked={isFilterButtonClicked}
-  onChange={handleCheckboxChange}
-  label="Favoritos"
-  className='mx-1'
-/>
 
- 
+    <Form.Check
+      type="switch"
+      checked={isFilterButtonClicked}
+      onChange={handleCheckboxChange}
+      label="Favoritos"
+      className='mx-1'
+    />
+
+
   );
 };
 
